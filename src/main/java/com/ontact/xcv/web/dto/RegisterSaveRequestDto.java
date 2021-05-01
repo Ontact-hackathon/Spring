@@ -31,6 +31,7 @@ public class RegisterSaveRequestDto {
                 .store(store)
                 .name(name)
                 .account(account)
+                .bank(bank)
                 .latitude(latitude)
                 .longitude(longitude)
                 .build();

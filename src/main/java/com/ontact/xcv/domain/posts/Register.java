@@ -26,10 +26,10 @@ public class Register {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String bank;
 
-    @Column(columnDefinition = "DOUBLE", nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String latitude;
 
-    @Column(columnDefinition = "DOUBLE", nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String longitude;
 
     @Builder

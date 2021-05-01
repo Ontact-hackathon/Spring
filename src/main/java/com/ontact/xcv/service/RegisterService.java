@@ -2,13 +2,16 @@ package com.ontact.xcv.service;
 
 import com.ontact.xcv.domain.posts.Register;
 import com.ontact.xcv.domain.posts.RegisterRepository;
+import com.ontact.xcv.web.dto.RegisterListResponseDto;
 import com.ontact.xcv.web.dto.RegisterSaveRequestDto;
 import com.ontact.xcv.web.dto.RegistersResponseDto;
 import com.ontact.xcv.web.dto.RegistersUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -35,11 +38,11 @@ public class RegisterService {
 
         return new RegistersResponseDto(entity);
     }
-//
-//    @Transactional(readOnly = true)
-//    public List<RegistersListResponseDto> findAll(){
-//        return registerRepository.findAll().stream()
-//                .map(RegistersListResponseDto::new)
-//                .collect(Collectors.toList());
-//    }
+
+    @Transactional(readOnly = true)
+    public List<RegisterListResponseDto> findAll(){
+        return registerRepository.findAll().stream()
+               .map(RegisterListResponseDto::new)
+               .collect(Collectors.toList());
+    }
 }
