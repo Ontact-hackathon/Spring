@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.RM.app'
+group = 'com.ontact.xcv'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
