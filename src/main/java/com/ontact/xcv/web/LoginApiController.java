@@ -1,16 +1,10 @@
 package com.ontact.xcv.web;
 
 import com.ontact.xcv.service.LoginService;
-import com.ontact.xcv.service.RegisterService;
-import com.ontact.xcv.web.dto.login.LoginListResponseDto;
-import com.ontact.xcv.web.dto.login.LoginSaveRequestDto;
-import com.ontact.xcv.web.dto.register.RegisterListResponseDto;
-import com.ontact.xcv.web.dto.register.RegisterSaveRequestDto;
+import com.ontact.xcv.web.dto.login.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.hibernate.annotations.Check;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +21,44 @@ public class LoginApiController {
     @GetMapping("/api/login")
     public List<LoginListResponseDto> findAllLogin() {
         return loginService.findAll();
+    }
+
+    // id 중복 체크
+    @GetMapping("/api/exists/{userId}")
+    public CheckUserId checkUserIdDuplicate(@PathVariable String userId) {
+        List<IdDuplicateDto> idList = loginService.checkUserIdDuplicate(userId);
+        String id = "";
+        if(idList.size() != 0) {
+            id = idList.get(0).getUserId();
+        }
+
+        Boolean check = false;
+
+        if(id.equals(userId))  check = true;
+
+        CheckUserId result = new CheckUserId();
+        result.setCheck(check);
+
+        return result;
+    }
+
+    // 로그인 처리
+    @GetMapping("/api/loginInfo/{userId}/{userPw}")
+    public CheckLoginUser checkLogin(@PathVariable String userId, @PathVariable String userPw) {
+        List<LoginHandlerDto> idpwList = loginService.checkLogin(userId);
+        String id = "", pw = "";
+        if(idpwList.size() != 0) {
+            id = idpwList.get(0).getUserId();
+            pw = idpwList.get(0).getUserPw();
+        }
+
+        Boolean check = false;
+
+        if(id.equals(userId) && pw.equals(userPw))  check = true;
+
+        CheckLoginUser result = new CheckLoginUser();
+        result.setCheck(check);
+
+        return result;
     }
 }
