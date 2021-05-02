@@ -1,10 +1,10 @@
 package com.ontact.xcv.web;
 
 import com.ontact.xcv.service.RegisterService;
-import com.ontact.xcv.web.dto.RegisterListResponseDto;
-import com.ontact.xcv.web.dto.RegisterSaveRequestDto;
-import com.ontact.xcv.web.dto.RegistersResponseDto;
-import com.ontact.xcv.web.dto.RegistersUpdateRequestDto;
+import com.ontact.xcv.web.dto.register.RegisterListResponseDto;
+import com.ontact.xcv.web.dto.register.RegisterSaveRequestDto;
+import com.ontact.xcv.web.dto.register.RegistersResponseDto;
+import com.ontact.xcv.web.dto.register.RegistersUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

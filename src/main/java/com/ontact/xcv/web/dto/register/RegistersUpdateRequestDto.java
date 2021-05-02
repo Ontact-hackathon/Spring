@@ -1,4 +1,4 @@
-package com.ontact.xcv.web.dto;
+package com.ontact.xcv.web.dto.register;
 
 import lombok.Builder;
 import lombok.Getter;
