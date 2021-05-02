@@ -23,18 +23,38 @@ public class LoginApiController {
         return loginService.findAll();
     }
 
+    @GetMapping("/api/userInfo/{userId}")
+    public CheckUserInfo userInfo(@PathVariable String userId) {
+        List<UserInfoDto> userList = loginService.checkUserInfo(userId);
+        String id = ".";
+        String bank = "";
+        String account = "";
+        if(userList.size() != 0) {
+            id = userList.get(0).getUserId();
+            bank = userList.get(0).getUserBank();
+            account = userList.get(0).getUserAccount();
+        }
+        CheckUserInfo result = new CheckUserInfo();
+        if(id.equals(userId)) {
+            result.setBank(bank);
+            result.setAccount(account);
+        }
+
+        return result;
+    }
+
     // id 중복 체크
     @GetMapping("/api/exists/{userId}")
     public CheckUserId checkUserIdDuplicate(@PathVariable String userId) {
         List<IdDuplicateDto> idList = loginService.checkUserIdDuplicate(userId);
-        String id = "";
+        String id = ".";
         if(idList.size() != 0) {
             id = idList.get(0).getUserId();
         }
 
-        Boolean check = false;
+        Boolean check = true;
 
-        if(id.equals(userId))  check = true;
+        if(id.equals(userId))  check = false;
 
         CheckUserId result = new CheckUserId();
         result.setCheck(check);
@@ -46,7 +66,7 @@ public class LoginApiController {
     @GetMapping("/api/loginInfo/{userId}/{userPw}")
     public CheckLoginUser checkLogin(@PathVariable String userId, @PathVariable String userPw) {
         List<LoginHandlerDto> idpwList = loginService.checkLogin(userId);
-        String id = "", pw = "";
+        String id = ".", pw = "";
         if(idpwList.size() != 0) {
             id = idpwList.get(0).getUserId();
             pw = idpwList.get(0).getUserPw();
