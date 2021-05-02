@@ -35,12 +35,4 @@ public class Login {
         this.userBank = userBank;
         this.userAccount = userAccount;
     }
-
-    public void update(String userId, String userPw, String userBank, String userAccount)
-    {
-        this.userId = userId;
-        this.userPw = userPw;
-        this.userBank = userBank;
-        this.userAccount = userAccount;
-    }
 }
