@@ -1,9 +1,10 @@
 package com.ontact.xcv.service;
 
 import com.ontact.xcv.domain.login.LoginRepository;
+import com.ontact.xcv.web.dto.login.IdDuplicateDto;
+import com.ontact.xcv.web.dto.login.LoginHandlerDto;
 import com.ontact.xcv.web.dto.login.LoginListResponseDto;
 import com.ontact.xcv.web.dto.login.LoginSaveRequestDto;
-import com.ontact.xcv.web.dto.register.RegisterListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,18 @@ public class LoginService {
     public List<LoginListResponseDto> findAll(){
         return loginRepository.findAll().stream()
                 .map(LoginListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<IdDuplicateDto> checkUserIdDuplicate(String userId) {
+        return loginRepository.findByUserId(userId).stream()
+                .map(IdDuplicateDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<LoginHandlerDto> checkLogin(String userId) {
+        return loginRepository.findByUserId(userId).stream()
+                .map(LoginHandlerDto::new)
                 .collect(Collectors.toList());
     }
 }
