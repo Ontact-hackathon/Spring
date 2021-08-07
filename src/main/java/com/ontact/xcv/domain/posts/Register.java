@@ -43,11 +43,4 @@ public class Register {
         this.longitude = longitude;
     }
 
-    public void update(String store, String name, String account, String bank)
-    {
-        this.store = store;
-        this.name = name;
-        this.account = account;
-        this.bank = bank;
-    }
 }

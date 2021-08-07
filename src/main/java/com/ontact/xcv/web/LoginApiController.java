@@ -78,6 +78,7 @@ public class LoginApiController {
 
         CheckLoginUser result = new CheckLoginUser();
         result.setCheck(check);
+        result.setId(idpwList.get(0).getId());
 
         return result;
     }
