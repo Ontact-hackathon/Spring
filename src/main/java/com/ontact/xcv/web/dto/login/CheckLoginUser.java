@@ -6,5 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CheckLoginUser {
+    private long id;
     private boolean check;
 }

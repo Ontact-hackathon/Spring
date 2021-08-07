@@ -4,7 +4,6 @@ import com.ontact.xcv.service.RegisterService;
 import com.ontact.xcv.web.dto.register.RegisterListResponseDto;
 import com.ontact.xcv.web.dto.register.RegisterSaveRequestDto;
 import com.ontact.xcv.web.dto.register.RegistersResponseDto;
-import com.ontact.xcv.web.dto.register.RegistersUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,10 +23,7 @@ public class RegisterApiController {
     public Long save(@RequestBody RegisterSaveRequestDto registerSaveRequestDto){
         return registerService.save(registerSaveRequestDto);
     }
-    @PutMapping("/api/register/{id}")
-    public Long update(@PathVariable Long id, @RequestBody RegistersUpdateRequestDto requestDto){
-        return registerService.update(id, requestDto);
-    }
+
     @GetMapping("/api/register/{id}")
     public RegistersResponseDto findByid(@PathVariable Long id){
         return registerService.findById(id);

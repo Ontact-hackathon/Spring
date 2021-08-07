@@ -5,7 +5,7 @@ import com.ontact.xcv.domain.posts.RegisterRepository;
 import com.ontact.xcv.web.dto.register.RegisterListResponseDto;
 import com.ontact.xcv.web.dto.register.RegisterSaveRequestDto;
 import com.ontact.xcv.web.dto.register.RegistersResponseDto;
-import com.ontact.xcv.web.dto.register.RegistersUpdateRequestDto;
+import com.ontact.xcv.web.dto.Bank.BankUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +21,6 @@ public class RegisterService {
     @Transactional
     public Long save(RegisterSaveRequestDto requestDto){
         return registerRepository.save(requestDto.toEntity()).getId();
-    }
-
-    @Transactional
-    public Long update(Long id, RegistersUpdateRequestDto requestDto){
-        Register register = registerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다. id=" + id));
-        register.update(requestDto.getStore(), requestDto.getName(), requestDto.getAccount(), requestDto.getBank());
-
-        return id;
     }
 
     public RegistersResponseDto findById(Long id){
